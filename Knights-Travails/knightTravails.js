@@ -11,5 +11,10 @@ export function knightMoves(start, end){
 }
 
 export function parseSquare(input){
-    
+    if(typeof input === 'string'){
+        const x = input[0].charCodeAt(0) - 97;
+        const y = parseInt(input[1], 10) - 1;
+        return [x, y];
+    }
+    return input;
 }
