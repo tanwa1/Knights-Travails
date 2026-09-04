@@ -27,7 +27,33 @@ export function getKnightMoves(square) {
   return moves;
 }
 
-export function knightMoves(start, end) {}
+export function knightMoves(start, end) {
+  const startCoor = parseSquare(start);
+  const target = parseSquare(end);
+  const visited = new Set();
+  visited.add(`${startCoor[0]},${startCoor[1]}`);
+  const queue = [[startCoor]];
+
+  while (queue.length > 0) {
+    const path = queue.shift();
+    const current = path[path.length - 1];
+
+    if (current[0] === target[0] && current[1] === target[1]) {
+      return path;
+    }
+
+    for (const neighbor of getKnightMoves(current)) {
+      const key = `${neighbor[0]},${neighbor[1]}`;
+
+      if (visited.has(key)) continue;
+
+      visited.add(key);
+
+      queue.push([...path, neighbor]);
+    }
+  }
+  return null;
+}
 
 export function parseSquare(input) {
   if (typeof input === "string") {
