@@ -39,6 +39,8 @@ export function knightMoves(start, end) {
     const current = path[path.length - 1];
 
     if (current[0] === target[0] && current[1] === target[1]) {
+      console.log(`You made it in ${path.length - 1} moves! Here's your path:` )
+      path.forEach(square => console.log(` [${square[0]}, ${square[1]}]`))
       return path;
     }
 
